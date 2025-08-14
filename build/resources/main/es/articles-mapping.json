@@ -1,0 +1,7 @@
+{
+  "properties": {
+    "title":   { "type": "text", "analyzer": "my_ko", "search_analyzer": "my_ko" },
+    "content": { "type": "text", "analyzer": "my_ko", "search_analyzer": "my_ko" },
+    "createdAt": { "type": "date" }
+  }
+}

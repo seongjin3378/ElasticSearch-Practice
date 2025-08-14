@@ -5,6 +5,7 @@ import com.elastic_serach.example.demo.index.Article;
 import com.elastic_serach.example.demo.repo.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.IndexOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,9 +22,12 @@ public class CreateIndexController {
 
     @GetMapping("/check-index")
     public String checkIndex(){
-        boolean exists = operations.indexOps(Article.class).exists();
+        IndexOperations io = operations.indexOps(Article.class);
+        System.out.println("exists = " + io.exists());
+        System.out.println("settings = " + io.getSettings()); // analysis 포함
+        System.out.println("mapping = " + io.getMapping());   // properties 확인
 
-        return "articles 인덱스 존재 여부: "+ exists;
+        return "articles 인덱스 존재 여부: "+ io.exists();
     }
 
     @GetMapping("/insert-article")

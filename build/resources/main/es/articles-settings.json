@@ -1,0 +1,25 @@
+{
+  "analysis": {
+    "tokenizer": {
+      "my_nori_tk": {
+        "type": "nori_tokenizer",
+        "decompound_mode": "mixed",
+        "user_dictionary_rules": [ "세종",
+                                   "세종시", "세종 시",
+                                   "hooking", "후킹"
+        ]
+      }
+    },
+    "filter": {
+      "ko_pos": { "type": "nori_part_of_speech" },
+      "ko_read": { "type": "nori_readingform" }
+    },
+    "analyzer": {
+      "my_ko": {
+        "type": "custom",
+        "tokenizer": "my_nori_tk",
+        "filter": [ "lowercase", "ko_pos", "ko_read" ]
+      }
+    }
+  }
+}

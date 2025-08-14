@@ -16,7 +16,8 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Setting(shards = 1, replicas = 1, refreshInterval = "1s")
+@Setting(shards = 1, replicas = 1, refreshInterval = "1s", settingPath = "/es/articles-settings.json")          // 위에서 만든 settings
+@Mapping(mappingPath = "/es/articles-mapping.json")
 
 public class Article {
 
