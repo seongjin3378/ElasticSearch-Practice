@@ -4,21 +4,41 @@
       "my_nori_tk": {
         "type": "nori_tokenizer",
         "decompound_mode": "mixed",
-        "user_dictionary_rules": [ "세종",
-                                   "세종시", "세종 시",
-                                   "hooking", "후킹"
+        "user_dictionary_rules": [
+          "세종",
+          "세종시", "세종 시",
+          "hooking", "후킹",
+          "임아무개",
+          "친아무개",
+          "임남아무개",
+          "이연"
         ]
       }
     },
     "filter": {
       "ko_pos": { "type": "nori_part_of_speech" },
-      "ko_read": { "type": "nori_readingform" }
+      "ko_read": { "type": "nori_readingform" },
+      "my_synonyms": {
+        "type": "synonym_graph",
+        "lenient": false,
+        "synonyms": [
+          "임아무개 => 아무개",
+          "친아무개 => 아무개",
+          "임남아무개 => 아무개",
+          "이연 => 모르는지인"
+        ]
+      }
     },
     "analyzer": {
       "my_ko": {
         "type": "custom",
         "tokenizer": "my_nori_tk",
         "filter": [ "lowercase", "ko_pos", "ko_read" ]
+      },
+      "my_ko_syn": {
+        "type": "custom",
+        "tokenizer": "standard",
+        "filter": [ "lowercase", "my_synonyms" ]
       }
     }
   }
