@@ -16,6 +16,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Setting(shards = 1, replicas = 1, refreshInterval = "1s", settingPath = "/es/articles-settings.json")          // 위에서 만든 settings
 @Mapping(mappingPath = "/es/articles-mapping.json")
 
@@ -26,19 +27,18 @@ public class Article {
 
 
 
+
     @Field(type = FieldType.Text, analyzer = "nori", searchAnalyzer = "nori")
     private String title;
 
 /*    @Field(type = FieldType.Keyword, name = "title.keyword")
     private String titleKeyword;*/
 
-    @Field(type = FieldType.Text, analyzer = "my_ko_syn", searchAnalyzer = "my_ko_syn")
-    private String content;
-
     @Field(type = FieldType.Integer)
     private Integer views;
 
-    @Field(type = FieldType.Date, format = {}, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS||epoch_millis")
+
+    @Field(type = FieldType.Date, format = {}, pattern = "yyyy-MM-dd'T'HH:mm:ss||epoch_millis")
     private LocalDateTime createdAt;
 
 
